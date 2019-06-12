@@ -11,7 +11,7 @@ Page({
     HOT_SINGER_LEN:10,
     listHeight:[],
     currentIndex:0,
-    fixedTitle:'',
+    fixedTitle:'热',  // 顶部默认显示热
     fixedTop:0,
     list:[
       {
@@ -100,15 +100,17 @@ Page({
   },
   scroll :function(e) {
     var newY = e.detail.scrollTop;
+    console.log(newY)
     this.scrollY(newY);
   },
   scrollY(newY) {
     const listHeight = this.data.listHeight
+    console.log(listHeight)
     // 当滚动到顶部，newY>0
     if (newY == 0 || newY < 0) {
       this.setData({
         currentIndex:0,
-        fixedTitle:''
+        fixedTitle:'热' // 顶部默认显示热
       })
       return
     }
@@ -165,16 +167,19 @@ Page({
     },1000)
   },
   scrollToview(e){
+    console.log( e)
     var id = e.target.dataset.id
     if (id == '热') {
       this.setData({
         scrollTop:0
       })
     } else {
+      let _e = e
       this.setData({
-        toView: id
+        // toView: id
+        scrollTop: 100
       })
     }
-    
+    // console.log( this.data.toView)
   }
 })
